@@ -13,12 +13,12 @@ CREATE TABLE departments
 SELECT * FROM departments;
 
 
-CREATE TABLE order_products 
+CREATE TABLE order_products_prior 
 (
 	order_id INT NOT NULL,
 	product_id INT,
-    add_to_cart_order INT, 
-    reordered INT
+        add_to_cart_order INT, 
+        reordered INT
 );
 	
 SELECT * FROM order_products;
@@ -29,11 +29,11 @@ CREATE TABLE orders
 (
 	order_id INT NOT NULL,
 	user_id INT,
-    order_number INT,
-    order_dow INT,
-    order_hour_of_day INT,
-    days_since_prior_order FLOAT
-);
+    	order_number INT,
+   	order_dow INT,
+   	order_hour_of_day INT,
+    	days_since_prior_order FLOAT
+);	
 	
 SELECT * FROM orders;
 
@@ -43,7 +43,7 @@ CREATE TABLE products
 (
 	product_id INT NOT NULL,
 	product_name VARCHAR(200),
-    department_id INT
+    	department_id INT
 );
 	
 SELECT * FROM products;
@@ -90,7 +90,7 @@ ORDER BY order_hour_of_day ASC;
 
 
 SELECT COUNT(op.order_id) as Total_Orders, p.product_name as Top_10_Products
-FROM order_products as op
+FROM order_products_prior as op
 INNER JOIN products as p
 ON op.product_id = p.product_id
 GROUP BY p.product_name
@@ -111,7 +111,7 @@ FROM (
 	FROM departments as d	
 	INNER JOIN products as p
 	ON d.department_id = p.department_id) as ddp
-INNER JOIN order_products as op
+INNER JOIN order_products_prior as op
 on ddp.product_id = op.product_id
 GROUP BY ddp.department
 ORDER BY Total_Orders DESC;
@@ -123,7 +123,7 @@ ORDER BY Total_Orders DESC;
 --How Many Products Were Reordered
 
 SELECT COUNT(DISTINCT(product_id))
-FROM order_products
+FROM order_products_prior
 WHERE reordered = 1;
 
 
@@ -163,7 +163,7 @@ ORDER BY order_number ASC;
 CREATE VIEW order_products_depatrtments AS
 SELECT p.department_id, p.product_id, op.order_id, dep.department, op.add_to_cart_order
 FROM products as p
-INNER JOIN order_products as op on p.product_id = op.product_id
+INNER JOIN order_products_prior as op on p.product_id = op.product_id
 INNER JOIN departments as dep on p.department_id = dep.department_id
 
 
