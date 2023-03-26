@@ -105,7 +105,7 @@ LIMIT 10;
 --Most popular department sold
 
 
-SELECT COUNT(op.order_id) as Total_Orders, ddp.department as Top_10_departments
+SELECT COUNT(op.order_id) as Total_Orders, ddp.department as Department
 FROM (
 	SELECT d.department, d.department_id, p.product_id
 	FROM departments as d	
