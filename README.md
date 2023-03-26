@@ -16,6 +16,6 @@ In this project, I will use online grocery order dataset try to understand the b
 
 4.	Which product has the greatest number of orders?
 
-5.	The average number of days from previous purchases.
+5.	The average number of days from previous to next purchases.
 
 6.	The total number of orders with alcohol
