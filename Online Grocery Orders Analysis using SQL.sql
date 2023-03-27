@@ -175,10 +175,13 @@ FROM order_products_depatrtments;
 
 --Total number of orders with alcohol 
 
-SELECT (SELECT COUNT(DISTINCT order_id) FROM order_products_depatrtments), COUNT(DISTINCT order_id)
+
+SELECT (SELECT COUNT(DISTINCT order_id) FROM order_products_depatrtments) as Total_Orders, 
+COUNT(DISTINCT order_id) as Orders_with_alcohol
 FROM order_products_depatrtments
 WHERE department='alcohol'
 GROUP BY department;
+
 
 
 
