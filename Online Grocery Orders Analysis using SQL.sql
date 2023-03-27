@@ -183,14 +183,3 @@ GROUP BY department;
 
 
 
-
---orders alcohol ordered first
-
-CREATE VIEW alcohol_first_orders AS
-SELECT order_id 
-FROM order_products_depatrtments
-WHERE department = 'alcohol' 
-AND add_to_cart_order = 1;
- 
-
-
